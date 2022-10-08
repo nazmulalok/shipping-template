@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <section class="page-header">
+            <div class="page-header-bg"
+                style="background-image: url({{ URL::asset('izeetak') }}/assets/images/backgrounds/page-header-bg.jpg)">
+            </div>
+            <div class="page-header-bg-overly"></div>
+            <div class="page-header-shape wow slideInRight" data-wow-delay="100ms" data-wow-duration="2500ms"
+                style="background-image: url({{ URL::asset('izeetak') }}/assets/images/shapes/page-header-shape.png)">
+            </div>
+            <div class="container">
+                <div class="page-header__inner">
+                    <ul class="thm-breadcrumb list-unstyled">
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><span>/</span></li>
+                        <li>Premium Calculator</li>
+                    </ul>
+                    <h3 style="color:#FFFFFF;">Premium Calculator</h3>
+                </div>
+            </div>
+        </section>
+        <!--Page Header End-->
+
+        <!--About Two Start-->
+        <section class="about-two">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2">
+                                <div class="about-two__left wow slideInLeft" data-wow-delay="100ms"
+                                    data-wow-duration="2500ms">
+                                    <div class="about-two__img">
+                                        <img src="{{ URL::asset('izeetak') }}/premioum_calculator1.jpg"
+                                            alt="Image Not Found!">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 wow slideInRight">
+                        {{-- <form action="{{ route('premium-calculator-result') }}" method="post" id="form">
+                        @csrf --}}
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2">
+                                <div class=" col-12 mb-3 ">
+                                    <div class="form-group">
+                                        {{-- <label class="control-label">Select Plan *</label> --}}
+                                        <select class="form-control plan_change" name="plan_id" id="plan_id">
+                                            <option value="">Select Plan *</option>
+                                            @foreach ($products as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name_en }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('plan_id')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-3">
+                                    <div class="form-group">
+                                        {{-- <label class="control-label">Select Durationar *</label> --}}
+                                        <select class="form-control" name="duration" id="duration">
+                                            <option value="">Select Duration / year *</option>
+                                            @foreach ($duration as $duration)
+                                            <option value="{{$duration->id}}"
+                                                class="duration-items insurance_product_id_{{$duration->insurance_product_id}}">
+                                                {{$duration->duration}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('duration')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-3">
+                                    <div class="form-group">
+                                        {{-- <label class="control-label">Select Year *</label> --}}
+                                        <select class="form-control" name="age" id="age">
+                                            <option value="">Select Age *</option>
+                                            @for ($x = 18; $x <= 55; $x++) <option value="{{ $x }}">{{ $x }}</option>
+                                                @endfor
+                                        </select>
+                                        @error('age')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-3">
+                                    <div class="form-group">
+                                        {{-- <label class="control-label">Sum Assured *</label> --}}
+                                        <input placeholder="Enter Sum Assured *" type="number" name="sum_assured"
+                                            id="sum_assured" class="form-control">
+                                        @error('sum_assured')
+                                        <span class="error text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-md-12 text-center pb-3">
+                                        <button type="submit" class="btn btn-danger getResult">Calculate</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- </form> --}}
+                    </div>
+                </div>
+
+                <div id="tableCalculate" class="row">
+                    <div class="col-12" style="background-color: #ddd;"> <br>
+
+                        <label class="control-label" style="width: 100px;">Plan: </label> <span
+                            id="plan_name"></span><br>
+                        <label class="control-label" style="width: 100px;">Duration: </label> <span
+                            id="duration-show"></span><br>
+                        <label class="control-label" style="width: 100px;">Age: </label> <span id="age-show"></span><br>
+                        <label class="control-label" style="width: 100px;">Assured Tk: </label> <span
+                            id="assured-tk-show"></span><br>
+
+                        <br>
+                        <br>
+                        <div class="table-responsive">
+                            <table class="table table-hover text-center">
+                                <thead>
+                                    <tr style="" class="bg-primary text-white">
+                                        <th scope="col">Mode</th>
+                                        <th scope="col">Total(Tk.)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Yearly</td>
+                                        <td><span id="yearly"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Half Yearly</td>
+                                        <td><span id="half_yearly"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Quarterly</td>
+                                        <td><span id="quarterly"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Month</td>
+                                        <td><span id="monthly"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!--About Two End-->
+        <br>
+        <br>
+        <br>
+        <br>
+
+        @endsection
+        @section('script')
+        <Script>
+            $(document).ready(function () {
+                $('#tableCalculate').hide();
+                $(document).on('click', '.getResult', function () {
+                    // console.log(true);
+                    var plan_id = $('#plan_id').val();
+                    var duration = $('#duration').val();
+                    var age = $('#age').val();
+                    var sum_assured = $('#sum_assured').val();
+                    $.ajax({
+                        error: formError,
+                        data: {
+                            "plan_id": plan_id,
+                            "duration_id": duration,
+                            "age": age,
+                            "sum_assured": sum_assured
+                            // "duration": $('#duration').val();
+                            // "age": $('#age').val();
+                            // "sum_assured": $('#sum_assured').val();
+                        },
+
+                        method: 'GET',
+                        dataType: 'json',
+                        url: "{{ route('premium-calculator-result') }}",
+                        success: function (responseText) {
+                            $('#tableCalculate').show()
+                            $('#plan_name').html(responseText.insuranceProduct.name_en);
+                            $('#duration-show').html(responseText.insuranceDuration.duration);
+                            $('#age-show').html(responseText.insuranceProductPricing.year);
+                            $('#assured-tk-show').html(sum_assured);
+                            var price = responseText.insuranceProductPricing.price;
+                            var productDuration = responseText.insuranceDuration.duration;
+                            var monthyValue = (parseFloat(price) / 1000 * parseFloat(sum_assured)) / (productDuration * 12);
+                            $('#monthly').html(parseFloat(monthyValue).toFixed(2));
+                            $('#yearly').html((parseFloat(monthyValue) * 12).toFixed(2));
+                            $('#half_yearly').html((parseFloat(monthyValue) * 6).toFixed(2));
+                            $('#quarterly').html((parseFloat(monthyValue) * 3).toFixed(2));
+
+                        }
+                    });
+
+                });
+                $(document).on('change', '.plan_change', function () {
+                    // console.log(true);
+                    $('.duration').prop('selectedIndex', 0);
+                    let Id = $(this).val();
+                    if (Id == 0) {
+                        $(".duration-items").show();
+                    } else {
+                        $(".duration-items").hide();
+                        $(".insurance_product_id_" + Id).show();
+                    }
+                });
+            });
+        </Script>
+    </body>
+
+</html>

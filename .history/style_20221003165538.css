@@ -1,0 +1,252 @@
+/* Common CSS Starts*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-color: #FF7D44;
+    --secondary-color: #0B3742;
+    --tertiary-color: #FFFFFF;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a.white-space {
+    white-space: nowrap;
+}
+
+/* Common CSS Ends */
+
+/* slider style starts */
+
+.main-slider>* {
+    z-index: 10;
+}
+
+.main-slider {
+    background: url(images/shipping-banner.jpg);
+    height: 700px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    transition: all 1s;
+    margin-top: -155px;
+    z-index: 50;
+}
+
+.main-slider:before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: rgb(11 55 66 / 55%);
+    z-index: 1;
+}
+
+.slide-content {
+    text-align: center;
+}
+
+.slide-text {
+    color: var(--tertiary-color);
+    padding-top: 100px;
+}
+
+.slider-title {
+    font-size: 4rem;
+    font-weight: 600;
+    line-height: 4.5rem;
+    text-transform: uppercase;
+}
+
+.slide-text p {
+    font-size: 20px;
+}
+
+a.common-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--tertiary-color);
+    background: var(--main-color);
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: all 1s ease;
+}
+
+a.common-btn:hover {
+    background: var(--tertiary-color);
+    color: var(--secondary-color);
+}
+
+a.common-btn.outline-btn {
+    background: transparent !important;
+    border: 1px solid var(--tertiary-color);
+}
+
+a.common-btn.outline-btn:hover {
+    background: var(--tertiary-color) !important;
+}
+
+/* Header style starts */
+
+.header-top {
+    z-index: 100;
+    background: transparent;
+    position: relative;
+}
+
+.top-bar,
+.header-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--tertiary-color);
+}
+
+.top-bar {
+    padding: 20px 0px;
+}
+
+.header-area {
+    background: var(--tertiary-color);
+    padding: 15px 20px;
+    border-radius: 3px;
+}
+
+nav ul {
+    list-style-type: none;
+    color: var(--secondary-color);
+    display: flex;
+    gap: 1.7rem;
+    margin: 0;
+}
+
+nav ul a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.5s;
+}
+
+nav ul a:hover {
+    color: var(--main-color);
+    transition: all 0.5s;
+}
+
+.nav-btn {
+    align-items: center;
+    display: flex;
+}
+
+.nav-btn i {
+    color: var(--tertiary-color);
+    font-size: 21px;
+    background: gray;
+    padding: 13px 15px;
+    border-radius: 5px;
+}
+
+/* Headings Styles */
+
+h1 {
+    font-size: 56px;
+}
+
+h2 {
+    font-size: 50px;
+}
+
+h3 {
+    font-size: 44px;
+}
+
+h4 {
+    font-size: 38px;
+}
+
+h5 {
+    font-size: 32px;
+}
+
+h6 {
+    font-size: 26px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+/* Section Styles */
+
+.py-50,
+.common-sec {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.common-sec {
+    position: relative;
+    z-index: 0;
+}
+
+.common-sec:nth-child(even):before {
+    content: "";
+    position: absolute;
+    width: 1000%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #f6f6f6;
+    z-index: -1;
+}
+
+/* Image box style */
+
+.img-box {
+    border-radius: 3px;
+    transition: 0.5s;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.img-box img {
+    border-radius: 3px;
+}
+
+.img-box:last-child {
+    margin-bottom: 0;
+}
+
+figure.img-box img+figcaption {
+    margin-top: 10px;
+    text-align: left;
+    padding: 10px;
+    border-radius: 3px;
+    box-shadow: -5px 5px 20px 0 rgb(0 0 0 / 5%);
+}

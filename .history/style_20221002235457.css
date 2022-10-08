@@ -1,0 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-color: #FF7D44;
+    --secondary-color: #0B3742;
+    --tertiary-color: #FFFFFF;
+}
